@@ -10,12 +10,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.stripe.android.paymentsheet.PaymentSheetResult
+import com.stripe.android.paymentsheet.rememberPaymentSheet
 import com.zain.stripeclient.ui.theme.StripeClientTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val paymentSheet = rememberPaymentSheet(::onPaymentSheetResult)
             StripeClientTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -27,6 +30,10 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+private fun onPaymentSheetResult(paymentSheetResult: PaymentSheetResult) {
+
 }
 
 @Composable
